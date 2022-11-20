@@ -3,6 +3,9 @@ Rails.application.routes.draw do
   root to: "pages#home"
   resources :chatrooms, only: :show
 
+  # verb 
+  # GET "/chatroom/1", to: "chatroom#"
+
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Defines the root path route ("/")
