@@ -6,11 +6,17 @@ import { createConsumer } from "@rails/actioncable"
 // Connects to data-controller="chatroom-subscription"
 export default class extends Controller {
   static targets = ["messages"]
+  static values = {
+    chatroomId: Number
+  }
 
   connect() {
     // this allows us to connect to rails websocket, it creates an instance
     // it needs one argument (the channel), in this case is the chatroom_channel
-    createConsumer().subscriptions.create("ChatroomChannel")
+    console.log(`Subscribed to the chatroom with the id ${this.chatroomIdValue}.`)
+
+    createConsumer().subscriptions.create(
+        { channel: "ChatroomChannel", id: this.chatroomIdValue})
 
   }
 
