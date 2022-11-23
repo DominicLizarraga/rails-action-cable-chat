@@ -15,12 +15,17 @@ export default class extends Controller {
     // it needs one argument (the channel), in this case is the chatroom_channel
     console.log(`Subscribed to the chatroom with the id ${this.chatroomIdValue}.`)
 
-    createConsumer().subscriptions.create(
+    this.channel = createConsumer().subscriptions.create(
         { channel: "ChatroomChannel", id: this.chatroomIdValue},
         { received: (data) => { this.#insertMessage(data) } }
         )
 
   }
+
+    disconnect() {
+      console.log("Unsubscribed from the chatroom")
+      this.channel.unsubscribe()
+    }
 
     resetForm(event) {
       const form = event.target
