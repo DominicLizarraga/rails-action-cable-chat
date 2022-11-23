@@ -21,6 +21,11 @@ export default class extends Controller {
         )
 
   }
+
+    resetForm(event) {
+      const form = event.target
+      form.reset()
+    }
     // private
     #insertMessage(data) {
       this.messagesTarget.insertAdjacentHTML("beforeend", data)
